@@ -15,8 +15,14 @@ export function GET(request) {
 export async function POST(request){
     let payload = await request.json()
     console.log(payload.name)
-    if(!payload.name || !payload.age || !payload.email){
-        return NextResponse.json({result : "required field not found" , success: false},{status: 400})
+
+    let missing = [];
+    if (!payload.name) missing.push("name");
+    if (!payload.age) missing.push("age");
+    if (!payload.email) missing.push("email");
+
+    if(missing.length){
+        return NextResponse.json({result : `Missing: ${missing.join(", ")}` , success: false},{status: 400})
     }
     return NextResponse.json({result : "new user created" , success: true},{status: 201})
 }
