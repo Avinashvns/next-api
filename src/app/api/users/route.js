@@ -12,6 +12,11 @@ export function GET(request) {
     )
 }
 
-export function POST(){
-    return NextResponse.json({result : "Hello Post Api"})
+export async function POST(request){
+    let payload = await request.json()
+    console.log(payload.name)
+    if(!payload.name || !payload.age || !payload.email){
+        return NextResponse.json({result : "required field not found" , success: false},{status: 400})
+    }
+    return NextResponse.json({result : "new user created" , success: true},{status: 201})
 }
