@@ -1,3 +1,4 @@
+import Link from "next/link"
 
 async function getUsers(){
     let data = await fetch("http://localhost:3000/api/users")
@@ -15,11 +16,8 @@ export default async function Users(){
             {
                 userData.map((item)=>(
                     <div key={item.id}>
-                        <h1>Id : {item.id}</h1>
-                        <h2>Name : {item.name}</h2>
-                        <h3>Age : {item.age}</h3>
-                        <h4>Email : {item.email}</h4>
-                        <br/>
+                        <Link href={`users/${item.id}`}>{item.name}</Link>
+                        <br/><br/>
                     </div>
                 ))
             }

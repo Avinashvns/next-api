@@ -6,6 +6,6 @@ export function GET(request, content) {
     console.log("Data ",content.params.id);
     const userData=user.filter((item)=>item.id==content.params.id)
    return NextResponse.json(
-    userData.length==0?{result:`No Data Found ID: ${content.params.id}`} : {result : userData, success:true},
+    userData.length==0?{result:`No Data Found ID: ${content.params.id}`} : {result : userData[0], success:true},
     {status: 200})
 }
