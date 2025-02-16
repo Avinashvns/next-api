@@ -16,7 +16,8 @@ export default async function Users(){
             {
                 userData.map((item)=>(
                     <div key={item.id}>
-                        <Link href={`users/${item.id}`}>{item.name}</Link>
+                        <span style={{display: "inline-block", width: "100px"}} ><Link href={`users/${item.id}`}>{item.name}</Link></span>
+                        <span><Link href={`users/${item.id}/update`}>Edit</Link></span>
                         <br/><br/>
                     </div>
                 ))
