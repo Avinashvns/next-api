@@ -13,13 +13,10 @@ export async function GET(){
     return NextResponse.json({success : true, data})
 }
 
-export async function POST(){
+export async function POST(request){
     await connectDB()
-    let newData = new Product({
-        name : "ram",
-        age : 30000,
-        email : "god@gmail.com"
-    })
+    const payload = await request.json()
+    let newData = new Product(payload)
     const result = await newData.save()
     return NextResponse.json({success: true, result})
 }
